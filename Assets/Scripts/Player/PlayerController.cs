@@ -26,9 +26,10 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField]
     private int _shieldPower = 0;
 
-    /// <summary>
-    /// The ship's ShieldPower is a value is clamped between 0 and 5.
-    /// </summary>
+    [field: SerializeField]
+    public GameObject SpeedFlamePrefab { get; private set; }
+    private GameObject currentFlame;
+
     public int ShieldPower
     {
         get => _shieldPower;
@@ -66,7 +67,6 @@ public class PlayerController : MonoBehaviour
         OnChange.Invoke(this);
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleMovement();
@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
         HandleDamageBoost();
         MoveShip();
         UpdateSprite();
+        HandleSpeedFlame();
     }
 
     private void HandleDamageBoost()
@@ -98,21 +99,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // ⭐ Kiểm tra va chạm với Star để +5 điểm
         if (other.CompareTag("Star"))
         {
-            // Tìm GameController để tăng điểm
             GameController gc = FindObjectOfType<GameController>();
             if (gc != null)
             {
-                gc.IncrementScore(5); // +5 điểm khi ăn sao
+                gc.IncrementScore(5);
             }
-
-            // Hủy Star sau khi Player ăn
             Destroy(other.gameObject);
         }
 
-        // Xử lý va chạm với các vật thể khác
         PlayerImpactor asImpactor = other.GetComponent<PlayerImpactor>();
         if (asImpactor != null && DamageBoost <= 0)
         {
@@ -161,5 +157,25 @@ public class PlayerController : MonoBehaviour
         newX = Mathf.Clamp(newX, Min.x, Max.x);
         newY = Mathf.Clamp(newY, Min.y, Max.y);
         transform.position = new Vector2(newX, newY);
+    }
+
+    private void HandleSpeedFlame()
+    {
+        if (Input.GetAxis("Vertical") > 0)
+        {
+            if (currentFlame == null)
+            {
+                currentFlame = Instantiate(SpeedFlamePrefab, transform);
+                currentFlame.transform.localPosition = new Vector2(0, -1f);
+            }
+        }
+        else
+        {
+            if (currentFlame != null)
+            {
+                Destroy(currentFlame);
+                currentFlame = null;
+            }
+        }
     }
 }
