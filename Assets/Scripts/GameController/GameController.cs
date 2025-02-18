@@ -60,6 +60,10 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
     [field: SerializeField]
     private int _livesRemaining = 3;
