@@ -267,8 +267,8 @@ MonoBehaviour:
     <LaserTemplate>k__BackingField: {fileID: 7269265395018511851, guid: 5af9ec9544eb81c4d9f699144a6b673b, type: 3}
   <FrontLaserSpawn>k__BackingField: {fileID: 3015076329648511911}
   <Velocity>k__BackingField: {x: 0, y: 0}
-  <Min>k__BackingField: {x: -2.5, y: -5}
-  <Max>k__BackingField: {x: 2.5, y: 5}
+  <Min>k__BackingField: {x: -8, y: -5}
+  <Max>k__BackingField: {x: 8, y: 5}
 --- !u!50 &3015076329381739175
 Rigidbody2D:
   serializedVersion: 4

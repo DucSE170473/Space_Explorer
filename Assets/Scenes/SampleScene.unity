@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17622193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.61, y: 5.88, z: 0}
+  m_LocalPosition: {x: -7.82, y: 5.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -308,7 +308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 263406552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.37, y: 5.88, z: 0}
+  m_LocalPosition: {x: 8.32, y: 5.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Space Raiders
+  m_text: Space Explorer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3dc6b5d6a5f43f74d8b6824cb4af2121, type: 2}
   m_sharedMaterial: {fileID: -7193718098274059523, guid: 3dc6b5d6a5f43f74d8b6824cb4af2121, type: 2}
@@ -1285,13 +1285,13 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 2425
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68
-  m_fontSizeBase: 68
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1355,7 +1355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &621517403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1741,8 +1741,8 @@ MonoBehaviour:
   <Stars>k__BackingField: 0
   <MinY>k__BackingField: 6
   <MaxY>k__BackingField: 8
-  <MinX>k__BackingField: -2.5
-  <MaxX>k__BackingField: 2.5
+  <MinX>k__BackingField: -10
+  <MaxX>k__BackingField: 10
   <MinSpeed>k__BackingField: 1
   <MaxSpeed>k__BackingField: 3
 --- !u!4 &988872126
@@ -2537,7 +2537,7 @@ MonoBehaviour:
   <PlayerSpawnPoint>k__BackingField: {fileID: 1273844407}
   <SpawnDelay>k__BackingField: 3
   <SpawnAt>k__BackingField: -1
-  _score: 5
+  _score: 100
   starPrefab: {fileID: 122909825011904593, guid: 3cd0bb1165efd214ebeac80a0fd60bfe, type: 3}
   minValue: -10
   maxValue: 10
@@ -3450,7 +3450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1713016868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3468,7 +3468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: -74}
   m_SizeDelta: {x: 0, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1713016869
