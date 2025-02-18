@@ -1,6 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.IO;
+using TMPro;
 using UnityEngine;
+
+[Serializable]
+public class ScoreData
+{
+    public int score;
+    public ScoreData(int score)
+    {
+        this.score = score;
+    }
+}
 
 public class GameController : MonoBehaviour
 {
@@ -9,6 +20,46 @@ public class GameController : MonoBehaviour
     public UnityEngine.Events.UnityEvent<GameController> OnInsertCoin;
     public UnityEngine.Events.UnityEvent<GameController> OnGameOver;
     public UnityEngine.Events.UnityEvent<PlayerController> OnPlayerSpawn;
+
+    [SerializeField]
+    public TextMeshProUGUI HighestScoreText;
+    public int HighScore { get; private set; } = 0;
+    string filePath;
+
+    private void Awake()
+    {
+        filePath = Path.Combine(Application.dataPath, "highscore.json");
+        LoadHighestScore();
+    }
+
+    private void LoadHighestScore()
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            ScoreData data = JsonUtility.FromJson<ScoreData>(json);
+            HighScore = data.score;
+            HighestScoreText.text = "High Score: " + HighScore;
+            Debug.Log("Loaded " + HighScore + " score from " + filePath);
+        }
+        else
+        {
+            HighestScoreText.text = "High Score: 0";
+        }
+    }
+
+    private void SaveToFile()
+    {
+        Debug.Log("Saved " + Score );
+        if (Score > HighScore)
+        {
+            ScoreData scoreData = new ScoreData(Score);
+            string json = JsonUtility.ToJson(scoreData, true);
+            File.WriteAllText(filePath, json);
+            Debug.Log("Saved " + Score + " to " + filePath);
+        }
+    }
+
 
     [field: SerializeField]
     private int _livesRemaining = 3;
@@ -119,7 +170,7 @@ public class GameController : MonoBehaviour
         if (LivesRemaining <= 0)
         {
             OnGameOver.Invoke(this);
-
+            SaveToFile();
             // ⭐ Dừng spawn sao khi game over
             StopStarSpawn();
         }
@@ -138,7 +189,7 @@ public class GameController : MonoBehaviour
 
     private void SpawnStar()
     {
-        Vector3 position = new Vector3(Random.Range(minValue, maxValue), 6f, 0);
+        Vector3 position = new Vector3(UnityEngine.Random.Range(minValue, maxValue), 6f, 0);
         Instantiate(starPrefab, position, Quaternion.identity);
     }
 }
