@@ -1595,7 +1595,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: INSERT COIN
+  m_text: Play Again
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3dc6b5d6a5f43f74d8b6824cb4af2121, type: 2}
   m_sharedMaterial: {fileID: -7193718098274059523, guid: 3dc6b5d6a5f43f74d8b6824cb4af2121, type: 2}
