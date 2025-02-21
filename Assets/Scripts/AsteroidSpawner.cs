@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +26,7 @@ public class AsteroidSpawner : MonoBehaviour
     public AsteroidController Template { get; private set; }
     [field: SerializeField]
     public GameController GameController { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,10 +45,17 @@ public class AsteroidSpawner : MonoBehaviour
     private void SpawnAsteroid()
     {
         float rotationSpeed = Random.Range(MinRotation, MaxRotation);
-        Vector2 speed = new (Random.Range(MinSpeed.x, MaxSpeed.x), Random.Range(MinSpeed.y, MaxSpeed.y));
-        AsteroidController ac = AsteroidController.Spawn(Template, rotationSpeed, speed, GameController);
+        // Lấy giá trị minSpeed và maxSpeed từ MinSpeed và MaxSpeed
+        float minSpeed = Mathf.Min(MinSpeed.magnitude, MaxSpeed.magnitude); // Lấy giá trị nhỏ nhất
+        float maxSpeed = Mathf.Max(MinSpeed.magnitude, MaxSpeed.magnitude); // Lấy giá trị lớn nhất
+
+        // Gọi Spawn với các tham số mới
+        AsteroidController ac = AsteroidController.Spawn(Template, rotationSpeed, minSpeed, maxSpeed, GameController);
+
+        // Đặt vị trí spawn ngẫu nhiên
         Vector2 spawnPoint = new(Random.Range(MinSpawnVector.x, MaxSpawnVector.x), MinSpawnVector.y);
         ac.transform.position = spawnPoint;
+
         LastSpawn = Time.time;
     }
 
